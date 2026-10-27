@@ -1,0 +1,17 @@
+query,expected_intent,keyword_baseline,keyword_correct,router_intent,router_method,router_correct,expected_ticket_id,extracted_ticket_id,ticket_id_correct
+Berapa hari jatah cuti tahunan untuk karyawan tetap?,faq,faq,True,faq,llm,True,,,
+gmn cara ganti rekening buat gajian?,faq,faq,True,faq,llm,True,,,
+Apakah sisa cuti tahun ini bisa dipakai tahun depan?,faq,faq,True,faq,llm,True,,,
+Can I work from home a few days a week?,faq,faq,True,faq,llm,True,,,
+Saya harus bikin tiket nggak kalau mau minta laptop baru?,faq,faq,True,faq,llm,True,,,
+"Kalau laptop rusak, kategori apa yang harus saya pilih di tiket saya?",faq,ticket_status,False,faq,llm,True,,,
+Should I create a ticket to get access to a new internal system?,faq,faq,True,faq,llm,True,,,
+cek TICKET-0011 dong,ticket_status,ticket_status,True,ticket_status,rule,True,TICKET-0011,TICKET-0011,True
+ticket-12 update terbarunya apa?,ticket_status,ticket_status,True,ticket_status,rule,True,TICKET-0012,TICKET-0012,True
+Tiket saya nomor 7 sudah sampai mana?,ticket_status,ticket_status,True,ticket_status,llm,True,TICKET-0007,TICKET-0007,True
+What's the status of ticket 0003?,ticket_status,faq,False,ticket_status,llm,True,TICKET-0003,TICKET-0003,True
+Laporan laptop overheat yang saya kirim minggu lalu sudah ada update belum?,ticket_status,faq,False,ticket_status,llm,True,,,True
+"Halo, selamat pagi!",unknown,faq,False,unknown,llm,True,,,
+Siapa pemenang Piala Dunia 2022?,unknown,faq,False,unknown,llm,True,,,
+Buatkan resep nasi goreng dong,unknown,faq,False,unknown,llm,True,,,
+Tolong tuliskan kode Python untuk mengurutkan list,unknown,faq,False,unknown,llm,True,,,

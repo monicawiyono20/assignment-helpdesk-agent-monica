@@ -1,0 +1,244 @@
+[
+  {
+    "id": "S1",
+    "jenis": "RAG",
+    "query": "Berapa jatah cuti tahunan saya sebagai karyawan tetap?",
+    "expected_intent": "faq",
+    "expected_status": "success",
+    "http_status": 200,
+    "latency_ms": 14693,
+    "routed_correctly": true,
+    "status_as_expected": true,
+    "response": {
+      "status": "success",
+      "intent": "faq",
+      "data": "Sebagai karyawan tetap, Anda mendapat jatah 12 hari cuti tahunan yang dapat diambil setelah masa kerja minimal 3 bulan.\nSumber: FAQ #1",
+      "metadata": {
+        "router": "llm",
+        "sources": [
+          {
+            "faq_id": 1,
+            "question": "Berapa jatah cuti tahunan karyawan tetap?",
+            "score": 0.8246
+          },
+          {
+            "faq_id": 7,
+            "question": "Apakah cuti bersama/libur nasional mengurangi jatah cuti tahunan?",
+            "score": 0.7396
+          },
+          {
+            "faq_id": 6,
+            "question": "Bagaimana cara melihat sisa cuti yang saya miliki?",
+            "score": 0.7299
+          }
+        ],
+        "cited_faq_ids": [
+          1
+        ]
+      }
+    }
+  },
+  {
+    "id": "S2",
+    "jenis": "RAG",
+    "query": "Gimana caranya reset password VPN? Akun saya kayaknya kekunci",
+    "expected_intent": "faq",
+    "expected_status": "success",
+    "http_status": 200,
+    "latency_ms": 17471,
+    "routed_correctly": true,
+    "status_as_expected": true,
+    "response": {
+      "status": "success",
+      "intent": "faq",
+      "data": "Untuk melakukan reset password VPN, Anda dapat melakukannya secara mandiri melalui portal self-service IT atau menghubungi tim IT Support karena akun Anda terkunci.\nSumber: FAQ #8",
+      "metadata": {
+        "router": "llm",
+        "sources": [
+          {
+            "faq_id": 8,
+            "question": "Bagaimana cara reset password VPN perusahaan?",
+            "score": 0.7995
+          },
+          {
+            "faq_id": 12,
+            "question": "Bagaimana jika lupa password akun laptop kerja?",
+            "score": 0.7168
+          },
+          {
+            "faq_id": 9,
+            "question": "Kenapa saya tidak bisa login ke email perusahaan?",
+            "score": 0.7103
+          }
+        ],
+        "cited_faq_ids": [
+          8
+        ]
+      }
+    }
+  },
+  {
+    "id": "S3",
+    "jenis": "Tool call",
+    "query": "Apa status tiket TICKET-0005 saya?",
+    "expected_intent": "ticket_status",
+    "expected_status": "success",
+    "http_status": 200,
+    "latency_ms": 5,
+    "routed_correctly": true,
+    "status_as_expected": true,
+    "response": {
+      "status": "success",
+      "intent": "ticket_status",
+      "data": "Tiket TICKET-0005 (Reset password VPN gagal terus, kategori Access) saat ini berstatus: Diproses. Pembaruan terakhir: 2026-08-27.",
+      "metadata": {
+        "router": "rule",
+        "tool": "get_ticket_status",
+        "ticket_id": "TICKET-0005",
+        "ticket": {
+          "ticket_id": "TICKET-0005",
+          "category": "Access",
+          "subject": "Reset password VPN gagal terus",
+          "status": "Diproses",
+          "last_update": "2026-08-27"
+        }
+      }
+    }
+  },
+  {
+    "id": "S4",
+    "jenis": "Tool call (ID tidak ada)",
+    "query": "Tolong cek status tiket TICKET-0042",
+    "expected_intent": "ticket_status",
+    "expected_status": "not_found",
+    "http_status": 200,
+    "latency_ms": 3,
+    "routed_correctly": true,
+    "status_as_expected": true,
+    "response": {
+      "status": "not_found",
+      "intent": "ticket_status",
+      "data": "Tiket TICKET-0042 tidak ditemukan. Pastikan nomor tiket sudah benar (format TICKET-XXXX), atau hubungi tim IT Support jika tiket baru saja dibuat.",
+      "metadata": {
+        "router": "rule",
+        "tool": "get_ticket_status",
+        "ticket_id": "TICKET-0042",
+        "ticket": null
+      }
+    }
+  },
+  {
+    "id": "S5",
+    "jenis": "Di luar cakupan KB",
+    "query": "Apakah kantor menanggung biaya kacamata karyawan?",
+    "expected_intent": "faq",
+    "expected_status": "success",
+    "http_status": 200,
+    "latency_ms": 11073,
+    "routed_correctly": true,
+    "status_as_expected": true,
+    "response": {
+      "status": "success",
+      "intent": "faq",
+      "data": "Maaf, informasi tersebut belum tersedia di knowledge base helpdesk. Anda dapat menghubungi tim People & IT Operations untuk mendapatkan bantuan lebih lanjut mengenai hal ini.\nSumber: -",
+      "metadata": {
+        "router": "llm",
+        "sources": [
+          {
+            "faq_id": 22,
+            "question": "Apakah perusahaan menyediakan asuransi kesehatan?",
+            "score": 0.7024
+          },
+          {
+            "faq_id": 23,
+            "question": "Bagaimana cara mengajukan reimbursement biaya kerja?",
+            "score": 0.6852
+          },
+          {
+            "faq_id": 27,
+            "question": "Apakah ada kebijakan lembur dan kompensasinya?",
+            "score": 0.6651
+          }
+        ],
+        "cited_faq_ids": []
+      }
+    }
+  },
+  {
+    "id": "S6",
+    "jenis": "Tambahan: kata 'tiket' di pertanyaan FAQ",
+    "query": "Saya harus bikin tiket nggak kalau mau minta laptop baru?",
+    "expected_intent": "faq",
+    "expected_status": "success",
+    "http_status": 200,
+    "latency_ms": 10250,
+    "routed_correctly": true,
+    "status_as_expected": true,
+    "response": {
+      "status": "success",
+      "intent": "faq",
+      "data": "Ya, Anda harus mengajukan permintaan laptop baru melalui tiket IT dengan menyertakan justifikasi kebutuhan, serta memerlukan persetujuan dari manajer dan tim IT Asset. \nSumber: FAQ #14",
+      "metadata": {
+        "router": "llm",
+        "sources": [
+          {
+            "faq_id": 14,
+            "question": "Bagaimana cara mengajukan permintaan laptop baru?",
+            "score": 0.8389
+          },
+          {
+            "faq_id": 15,
+            "question": "Apa yang harus dilakukan jika laptop kerja rusak?",
+            "score": 0.8027
+          },
+          {
+            "faq_id": 18,
+            "question": "Bagaimana prosedur pengembalian perangkat saat resign?",
+            "score": 0.7302
+          }
+        ],
+        "cited_faq_ids": [
+          14
+        ]
+      }
+    }
+  },
+  {
+    "id": "S7",
+    "jenis": "Tambahan: cek tiket tanpa ID",
+    "query": "Laporan laptop overheat yang saya kirim minggu lalu sudah ada update belum?",
+    "expected_intent": "ticket_status",
+    "expected_status": "error",
+    "http_status": 200,
+    "latency_ms": 5960,
+    "routed_correctly": true,
+    "status_as_expected": true,
+    "response": {
+      "status": "error",
+      "intent": "ticket_status",
+      "data": "Untuk mengecek status tiket, mohon sertakan nomor tiket Anda (format TICKET-XXXX, misalnya TICKET-0005).",
+      "metadata": {
+        "router": "llm"
+      }
+    }
+  },
+  {
+    "id": "S8",
+    "jenis": "Tambahan: di luar domain",
+    "query": "Siapa pemenang Piala Dunia 2022?",
+    "expected_intent": "unknown",
+    "expected_status": "error",
+    "http_status": 200,
+    "latency_ms": 10215,
+    "routed_correctly": true,
+    "status_as_expected": true,
+    "response": {
+      "status": "error",
+      "intent": "unknown",
+      "data": "Maaf, saya hanya dapat membantu pertanyaan seputar kebijakan HR & IT perusahaan (misalnya cuti, password, atau perangkat kerja) dan pengecekan status tiket (sertakan nomor tiket, misalnya TICKET-0005).",
+      "metadata": {
+        "router": "llm"
+      }
+    }
+  }
+]
